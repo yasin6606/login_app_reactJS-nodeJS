@@ -40,13 +40,13 @@ class Login extends Component {
             // start login loading
             this.setState({ loginLoading: true });
 
-            const login = {
+            const loginInfo = {
                 username: this.state.username,
                 password: this.state.password,
             };
 
-            if (login.username && login.password) {
-                const login = await axios.post("http://localhost:5004/api/v1/route/login", login);
+            if (loginInfo.username !== undefined && loginInfo.password !== undefined) {
+                const login = await axios.post("http://localhost:5004/api/v1/route/login", loginInfo);
 
                 // login success
                 if (login.data && login.data.token) {
