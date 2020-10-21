@@ -1,4 +1,4 @@
-const App = require('./app');
-require('dotenv').config({ path: './.env' });
+const App = require('./app/index');
+require('dotenv').config({ path: "./.env" });
 
 new App();
