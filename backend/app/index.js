@@ -22,7 +22,8 @@ const setServer = () => {
         try {
             const dbOpt = {
                 useNewUrlParser: true,
-                useUnifiedTopology: true
+                useUnifiedTopology: true,
+                dbName: 'loginDB'
             };
 
             const db = await mongoose.connect(process.env.DATABASE_URI, dbOpt);

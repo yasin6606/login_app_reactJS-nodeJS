@@ -48,14 +48,16 @@ class Register extends Component {
     // username handler
     usernameHandler = async e => {
         const value = e.target.value;
-        try {
-            // connect to server and check incoming username to be unique
-            const usernameCheck = await axios.post("http://localhost:5004/users/username/check", { username: value });
+        // try {
+        // connect to server and check incoming username to be unique
+        // const usernameCheck = await axios.post("http://localhost:5004/api/v1/route/register/check/username", { username: value });
 
-            usernameCheck.data.valid === true && this.setState({ username: value, valid: true });
-        } catch (err) {
-            this.setState({ username: { value: undefined, valid: false } });
-        };
+        // usernameCheck.data.valid === true && this.setState({ username: { value, valid: true } });
+        this.setState({ username: { value, valid: true } });
+        // console.log(usernameCheck.data);
+        // } catch (err) {
+        // this.setState({ username: { value: undefined, valid: false } });
+        // };
     };
 
     // password handler
@@ -89,15 +91,15 @@ class Register extends Component {
             // show button loading
             this.setState({ regLoading: true });
 
-            // if (regInfo.firstName && regInfo.lastName && regInfo.username && regInfo.password) {
+            if (regInfo.firstName && regInfo.lastName && regInfo.username && regInfo.password) {
 
                 const reg = await axios.post('http://localhost:5004/api/v1/route/register/', regInfo);
 
                 reg.data.result ?
                     this.showAlertHandler('success', 'check-circle', 'کاربر مورد نظر با موفقیت ثبت شد') :
                     this.showAlertHandler('danger', 'times-circle', 'خطا در ایجاد کاربر بوجود آمده');
-            // } else
-                // this.showAlertHandler('warning', 'sticky-note', 'لطفاً همه موارد را پر کنید')
+            } else
+                this.showAlertHandler('warning', 'sticky-note', 'لطفاً همه موارد را پر کنید')
         } catch (err) {
             this.showAlertHandler('warning', 'server', 'لطفاً ارتباط با سرور را بررسی کنید')
         };

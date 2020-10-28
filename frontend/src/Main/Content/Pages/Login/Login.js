@@ -47,7 +47,7 @@ class Login extends Component {
 
             if (loginInfo.username !== undefined && loginInfo.password !== undefined) {
                 const login = await axios.post("http://localhost:5004/api/v1/route/login", loginInfo);
-
+                console.log(login);
                 // login success
                 if (login.data && login.data.token) {
                     localStorage.setItem("login", login.data.token);
