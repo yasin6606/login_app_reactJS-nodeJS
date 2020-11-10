@@ -46,14 +46,15 @@ class Login extends Component {
             };
 
             if (loginInfo.username !== undefined && loginInfo.password !== undefined) {
-                const login = await axios.post("http://localhost:5004/api/v1/route/login", loginInfo);
-                console.log(login);
+                const login = await axios.post("http://localhost:5004/api/v1/route/login/", loginInfo);
+
                 // login success
                 if (login.data && login.data.token) {
                     localStorage.setItem("login", login.data.token);
-                    window.location("/dashboard");
+                    localStorage.setItem("info", JSON.stringify(login.data.userInfo));
+                    window.location.assign(`http://localhost:3000/dashboard`)
                     this.setState({ loginFailed: false, emptyField: false, loginLoading: false });
-                }
+                };
             } else
                 this.setState({ emptyField: true, loginLoading: false });
         } catch (err) {
