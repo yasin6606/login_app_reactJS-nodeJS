@@ -10,7 +10,7 @@ class UserInfoTbl extends Component {
 
     getInitUserData = async () => {
         try {
-            const user = await axios.get(`http://localhopst:3000/api/v1/route/users/info/${this.props.match.params.id}`);
+            const user = await axios.get(`http://localhopst:3000/api/v1/route/users/info/${this.props.match.params.id}/${localStorage.getItem('login')}`);
 
             user && this.setState({ info: user.data.userInfo });
         } catch (error) {
